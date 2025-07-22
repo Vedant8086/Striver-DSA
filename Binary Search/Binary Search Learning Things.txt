@@ -1,0 +1,13 @@
+Binary Search Learning Things : 
+	X.Binary_Search With Recursion
+	1.Lower_Bound
+	2.Upper_Bound
+	3.Search_Insert_Position
+	4.Floor_And_Ceil
+	5.First_And_Last_Occurence_Of_Element
+	6.Find_Smallest_Letter_Greater_Than_Target
+	7.Search_Element_In_Rotated_Matrix [ No Duplicate ] 
+	8.Search_Element_In_Rotated_Matrix [ Duplicate ] 
+	9.Single_Element_In_Sorted_Array
+	10.Peak_Element
+	11.
