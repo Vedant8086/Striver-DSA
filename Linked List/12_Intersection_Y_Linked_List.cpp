@@ -42,30 +42,24 @@ void ArrayToLL(vector<int>& arr,Node*& head) {
     }
 }
 
-int addHelper(Node* temp) {
-    if(temp == nullptr) return 1;
+Node* Intersection_Y_LL(Node* headA, Node* headB) {
+     if(headA == NULL || headB == NULL) return NULL;
+        Node* temp1 = headA;
+        Node* temp2 = headB;
+        while(temp1 != temp2) {
+            temp1 = temp1->next;
+            temp2 = temp2->next;
 
-    int carry = addHelper(temp->next);
-    temp->data += carry;
-    if(temp->data < 10) return 0;
-    temp->data = 0;
-    return 1;
-}
-void AddOneToLL(Node*& head) {
-    int carry = addHelper(head);
-    if(carry) {
-        Node* newNode = new Node(1);
-        newNode->next = head;
-        head = newNode;
-    }
-}
+            if(temp1 == temp2) return temp1;
 
+            if(temp1 == NULL) temp1 = headB;
+            if(temp2 == NULL) temp2 = headA;
+        }
+
+        return temp1;
+}
 int main() {
-    vector<int> arr = {1,2,3,4,5,6,7,8,9};
-    Node* head = new Node(arr[0]);
-    ArrayToLL(arr,head);
-    TraversingLL(head);
-    AddOneToLL(head);
-    TraversingLL(head);
+    //Due to its Y Linked List 
+    // visit site : https://leetcode.com/problems/intersection-of-two-linked-lists/
     return 0;
 }

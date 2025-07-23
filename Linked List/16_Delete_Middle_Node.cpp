@@ -14,6 +14,7 @@
 #include<stdexcept>
 #include<fstream>
 using namespace std;
+
 class Node {
     public :
         int data;
@@ -42,30 +43,24 @@ void ArrayToLL(vector<int>& arr,Node*& head) {
     }
 }
 
-int addHelper(Node* temp) {
-    if(temp == nullptr) return 1;
-
-    int carry = addHelper(temp->next);
-    temp->data += carry;
-    if(temp->data < 10) return 0;
-    temp->data = 0;
-    return 1;
-}
-void AddOneToLL(Node*& head) {
-    int carry = addHelper(head);
-    if(carry) {
-        Node* newNode = new Node(1);
-        newNode->next = head;
-        head = newNode;
+void DeleteMiddleNode(Node*& head) {
+    if(head == nullptr || head->next == nullptr) return;
+    Node* slow = head;
+    Node* fast = head;
+    fast = fast->next->next;
+    while(fast != nullptr && fast->next != nullptr) {
+        slow = slow->next;
+        fast = fast->next->next;
     }
+    slow->next = slow->next->next; // Delete the middle node
+    return;
 }
-
 int main() {
-    vector<int> arr = {1,2,3,4,5,6,7,8,9};
+    vector<int> arr = {1,2,3,4,5};
     Node* head = new Node(arr[0]);
-    ArrayToLL(arr,head);
+    ArrayToLL(arr, head);
     TraversingLL(head);
-    AddOneToLL(head);
+    DeleteMiddleNode(head);
     TraversingLL(head);
     return 0;
 }
