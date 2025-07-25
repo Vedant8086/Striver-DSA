@@ -45,6 +45,10 @@ void ArrayToLL(vector<int>& arr,Node*& head) {
 
 
 int main() {
+    vector<int> arr = {1,2,3,4,5};
+    Node* head = new Node(arr[0]);
+    ArrayToLL(arr, head);
+    TraversingLL(head);
 
     return 0;
 }
