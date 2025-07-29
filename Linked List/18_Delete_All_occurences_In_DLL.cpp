@@ -44,6 +44,28 @@ void ArrayToLL(vector<int>& arr,Node*& head) {
 }
 
 
+Node* DeleteAllOccurence(Node*& head,int x) {
+    Node* temp = head;
+    while(temp != nullptr) {
+        if(temp->data == x) {
+            if(temp == head) {
+                head = temp->next;
+            }
+            Node* new_node = temp->next;
+            Node* prev_node = temp->prev;
+            if(new_node) {
+                new_node->prev = prev_node;
+            }
+            if(prev_node) {
+                prev_node->next = new_node;
+            }
+            free(temp);
+            temp = new_node;
+        }
+    }
+
+    return head;
+}
 int main() {
     vector<int> arr = {1,2,3,4,5};
     Node* head = new Node(arr[0]);
