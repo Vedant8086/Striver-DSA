@@ -26,11 +26,11 @@ class Node {
 
 class StackUsingLL {
     public : 
-        Node* top;
-        int size = 0;
+        Node* top = nullptr;
     StackUsingLL() {
-
+        top = nullptr;
     }
+    int size = 0;
     void push(int x) {
         Node* temp = new Node(x);
         temp->next = top;
@@ -38,7 +38,7 @@ class StackUsingLL {
         size++;
     }
     int pop() {
-        if(top == NULL) {
+        if(top == nullptr) {
             return -1;
         }
         int popped = top->data;
@@ -48,18 +48,83 @@ class StackUsingLL {
         size--;
         return popped;
     }
-    int top() {
+    int Top() {
         if(top ==nullptr) {
             return -1;
         }
 
         return top->data;
     }
-    int size() {
-        return size;
+    int sizee() {
+        return this->size;
     }
 };
-int main() {
+class QueueImp {
+    public : 
+        Node* front = nullptr;
+        Node* end = nullptr;
+        int sizes = 0;
+    QueueImp() {
 
+    }
+    void push(int x) {
+        Node* temp = new Node(x);
+        if(front == nullptr) {
+            front = temp;
+            end = temp;
+        } else {
+            end->next = temp;
+            end = temp;
+        }
+        sizes++;
+    }
+    int pop() {
+        if(front == nullptr) {
+            return -1;
+        }
+        int popped = front->data;
+        Node* temp = front;
+        front = front->next;
+        delete temp;
+        sizes--;
+        return popped;
+    }
+    int top() {
+        if(front == nullptr) return -1;
+        return front->data;
+    }
+    int size() {
+        return this->sizes;
+    }
+
+};
+int main() {
+    StackUsingLL s1;
+    s1.push(10);
+    s1.push(20);
+    s1.push(30);
+    s1.push(40);
+    s1.push(50);
+    cout << "Top : " << s1.Top() << endl;
+    s1.pop();
+    cout << "Top : " << s1.Top() << endl;
+    s1.pop();
+    cout << "Top : " << s1.Top() << endl;
+    s1.pop();
+    cout << "Top : " << s1.Top() << endl;
+    cout << "Size of Stack : " << s1.sizee() << endl;
+    
+    QueueImp q1;
+    q1.push(10);
+    q1.push(20);
+    q1.push(30);
+    q1.push(40);
+    q1.push(50);
+    cout << "Top : " << q1.top() << endl;
+    q1.pop();
+    cout << "Top : " << q1.top() << endl;
+    q1.pop();
+    cout << "Top : " << q1.top() << endl;
+    cout << "Size of Queue : " << q1.size() << endl;
     return 0;
 }
