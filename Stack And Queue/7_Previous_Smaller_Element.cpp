@@ -14,24 +14,22 @@
 #include<stdexcept>
 #include<fstream>
 using namespace std;
-vector<int> Next_Greater_Element_II(vector<int>& nums) {
+vector<int> Previous_Smaller_Element(vector<int>& nums) {
     vector<int> ans(nums.size(),0);
     stack<int> st;
-
-    for(int i = 2 * nums.size() - 1;i>= 0;i--) {
-        while(!st.empty() && st.top() <= nums[i % nums.size()]) {
+    int n = nums.size();
+    for(int i = 0;i < n;i++) {
+        while(!st.empty() && st.top() >= nums[i]) {
             st.pop();
         }
-        if(i < nums.size()) {
-            ans[i % nums.size()] = st.empty() ? -1 : st.top();
-        }
-        st.push(nums[i % nums.size()]);
+        ans[i] = st.empty() ? -1 : st.top();
+        st.push(nums[i]);
     }
     return ans;
 }
 int main() {
-    vector<int> ans = {10,2,12,1,11};
-    for(auto i : Next_Greater_Element_II(ans)) {
+    vector<int> v = {5,7,9,6,7,4,5,1,3,7};
+    for(auto i : Previous_Smaller_Element(v)) {
         cout << i << " ";
     }
     cout << endl;
