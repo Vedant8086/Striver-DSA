@@ -84,7 +84,7 @@ private :
     long long sumSubarrayMaxs(vector<int>& arr) {
         int n = arr.size();
         long long total = 0;
-        int mod = (int)(1e9 + 7);
+        // int mod = (int)(1e9 + 7);
         vector<int> nse = findnge(arr);
         vector<int> pse = findpge(arr);
         for(int i = 0;i < n;i++) {
