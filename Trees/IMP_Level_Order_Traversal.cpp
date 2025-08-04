@@ -29,22 +29,17 @@ class Solution {
             if(root == nullptr) return ans;
             queue<TreeNode*> q;
             q.push(root);
-            bool flag = true;
             while(!q.empty()) {
                 int size = q.size();
-                vector<int> level(size,0);
+                vector<int> level;
                 for(int i = 0;i < size;i++) {
                     TreeNode* node = q.front();
                     q.pop();
-
-                    int index = (flag) ?  i : (size - 1 - i);
-
                     if(node->left != nullptr) q.push(node->left);
                     if(node->right != nullptr) q.push(node->right);
-                    level[index] = node->val;
+                    level.push_back(node->val);
                 }
                 ans.push_back(level);
-                flag = !flag;
             }
             return ans;
         }
@@ -59,7 +54,7 @@ int main() {
     Solution sol;
     vector<vector<int>> result = sol.levelOrder(root);
 
-    cout << "Zig Zag Traversal:" << endl;
+    cout << "Level Order Traversal:" << endl;
     for (const auto& level : result) {
         for (int val : level) {
             cout << val << " ";
